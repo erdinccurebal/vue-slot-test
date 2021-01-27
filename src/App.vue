@@ -1,26 +1,48 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <slot-test>
+      <div v-for="post in posts" :key="post">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+      </div>
+    </slot-test>
+    <button @click="getir">İçerikleri Getir</button>
+    <button @click="posts = []">İçerikleri Sil</button>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SlotTest from "./components/SlotTest.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    SlotTest,
+  },
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  methods: {
+    getir() {
+      this.posts = [
+        {
+          id: 1,
+          title: "Lorem Title 12321321",
+          content: "Lorem Content 67534234",
+        },
+        {
+          id: 2,
+          title: "Lorem Title 456345345",
+          content: "Lorem Content 34567433",
+        },
+        {
+          id: 3,
+          title: "Lorem Title 1233554",
+          content: "Lorem Content 457642",
+        },
+      ];
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
